@@ -123,6 +123,10 @@
                 type: Boolean,
                 default: false
             },
+            filterable-case-insensitive: {
+                type: Boolean,
+                default: false
+            },
             notFoundText: {
                 type: String
             },
@@ -222,7 +226,11 @@
                 selections = selections.filter(item => {
                     return item.label ? item.label.indexOf(this.query) > -1 : false;
                 }).map(item => {
-                    item.display = item.display.replace(new RegExp(this.query, 'g'), `<span>${this.query}</span>`);
+                    if (this.filterable-case-insensitive) {
+                        item.display = item.display.replace(new RegExp(this.query, 'gi'), `<span>${this.query}</span>`);
+                    } else {
+                        item.display = item.display.replace(new RegExp(this.query, 'g'), `<span>${this.query}</span>`);
+                    }
                     return item;
                 });
                 return selections;
