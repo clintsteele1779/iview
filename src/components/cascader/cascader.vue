@@ -227,7 +227,7 @@
                     return item.label ? item.label.indexOf(this.query) > -1 : false;
                 }).map(item => {
                     if (this.filterable-case-insensitive) {
-                        item.display = item.display.replace(new RegExp(this.query, 'gi'), `<span>${this.query}</span>`);
+                        item.display = item.display.toLowerCase().replace(new RegExp(this.query.toLowerCase(), 'gi'), `<span>${this.query}</span>`);
                     } else {
                         item.display = item.display.replace(new RegExp(this.query, 'g'), `<span>${this.query}</span>`);
                     }
